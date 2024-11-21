@@ -3,6 +3,10 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import Logo from '@/public/logo.png'
 import { DashboardLinks } from "../components/DashboardLinks";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { MenuIcon } from "lucide-react";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function DashboardLayout({children}: {children: ReactNode}) {
@@ -19,12 +23,33 @@ export default function DashboardLayout({children}: {children: ReactNode}) {
                         </div>
 
                         <div className="flex-1">
-                            <nav className="grid items-start px-2 lg:px-4">
+                            <nav className="grid items-start px-2 lg:px-4 gap-3">
                                 <DashboardLinks />
                             </nav>
                         </div>
 
                     </div>
+                </div>
+
+                <div className="flex flex-col">
+                    <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button className="md:hidden shrink-0" size="icon" variant="outline">
+                                    <MenuIcon className="size-5" />
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="left" className="flex flex-col">
+                                <nav className="grid gap-2 mt-10">
+                                    <DashboardLinks />
+                                </nav>
+                            </SheetContent>
+                        </Sheet>
+
+                        <div className="ml-auto flex items-center gap-x-4">
+                            <ThemeToggle />
+                        </div>
+                    </header>
                 </div>
 
             </div>
